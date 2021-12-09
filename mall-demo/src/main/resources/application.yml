@@ -1,3 +1,4 @@
+# 使用端口
 server:
   port: 8082
 
@@ -9,9 +10,15 @@ spring:
     username: root
     password: 123456
 
+# logback日志配置文件
+logging:
+  config: classpath:logback-boot.xml
+
+
 #  配置mybatis-plus路径
 mybatis-plus:
   mapper-locations: classpath:mapper/*Dao.xml
   global-config:
     db-column-underline: true
   type-aliases-package: com.macro.mall.demo.model
+
