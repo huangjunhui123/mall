@@ -18,5 +18,6 @@ public interface MovieService extends IService<MovieEntity> {
 
     List<MoviePageListResVo> list();
 
+    void add();
 }
 
