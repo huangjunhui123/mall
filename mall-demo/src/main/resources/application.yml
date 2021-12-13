@@ -1,6 +1,10 @@
 # 使用端口
 server:
   port: 8082
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /
 
 spring:
   application:
