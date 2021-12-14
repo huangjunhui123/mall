@@ -25,4 +25,9 @@ public class MovieServiceImpl extends ServiceImpl<MovieDao, MovieEntity> impleme
         List<MoviePageListResVo> vo = movieDao.selectMovieList("123");
         return vo;
     }
+
+    @Override
+    public void add() {
+
+    }
 }

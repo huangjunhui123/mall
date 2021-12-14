@@ -16,6 +16,10 @@ import java.util.List;
  */
 public interface MovieService extends IService<MovieEntity> {
 
+    /**
+     * 列表
+     * @return
+     */
     List<MoviePageListResVo> list();
 
     void add();
