@@ -5,6 +5,7 @@ import com.macro.mall.demo.demo.config.PermissionLimit;
 import com.macro.mall.demo.demo.service.LoginService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import javax.validation.constraints.NotBlank;
  */
 @RestController
 @RequestMapping("/user")
+@Validated
 @Api(value = "登录模块", tags = "登录模块")
 public class LogInController {
 
@@ -29,8 +31,8 @@ public class LogInController {
             @ApiImplicitParam(name = "userName", value = "admin"),
             @ApiImplicitParam(name = "password", value = "123456"),
     })
-    public MessageResponse<String> login(@NotBlank(message = "请输入用户名") String userName,@NotBlank(message = "请输入密码") String passWord) {
-        String token = loginService.login(userName, passWord);
+    public MessageResponse<String> login(@NotBlank(message = "请输入用户名") String userName,@NotBlank(message = "请输入密码") String password) {
+        String token = loginService.login(userName, password);
         return MessageResponse.data(token);
     }
 }

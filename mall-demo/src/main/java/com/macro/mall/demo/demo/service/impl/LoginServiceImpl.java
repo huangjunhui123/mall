@@ -1,7 +1,12 @@
 package com.macro.mall.demo.demo.service.impl;
 
+import com.macro.mall.demo.demo.bo.ConsumerInfoResVo;
 import com.macro.mall.demo.demo.common.FrchainException;
+import com.macro.mall.demo.demo.config.consts.RedisConst;
 import com.macro.mall.demo.demo.service.LoginService;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -19,6 +24,10 @@ public class LoginServiceImpl implements LoginService {
 
     private String name = "admin";
     private String word = "123456";
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     /**
      * 用户登录
      * @param userName
@@ -31,7 +40,14 @@ public class LoginServiceImpl implements LoginService {
         if (!name.equals(userName) && !word.equals(password)) {
             throw new FrchainException("密码或用户名错误！");
         }
-        return "你好";
+
+        // 生成token
+        ConsumerInfoResVo userInfo = new ConsumerInfoResVo();
+        userInfo.setName(name);
+        userInfo.setPhone(word);
+        String token = DigestUtils.md5Hex(UUID.randomUUID().toString() + System.currentTimeMillis());
+        redisTemplate.opsForValue().set(RedisConst.USER_LOGIN + token, userInfo, RedisConst.USER_TOKEN_TIME, TimeUnit.HOURS);
+        return token;
     }
 
 //    public String login(String username, String password, String requestId, String code) {
