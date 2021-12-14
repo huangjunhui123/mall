@@ -1,6 +1,7 @@
 package com.macro.mall.demo.demo.controller;
 
 import com.macro.mall.demo.demo.bo.MoviePageListResVo;
+import com.macro.mall.demo.demo.common.MessageResponse;
 import com.macro.mall.demo.demo.model.MovieEntity;
 import com.macro.mall.demo.demo.service.MovieService;
 import io.swagger.annotations.Api;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -54,9 +56,9 @@ public class MovieController {
      */
     @RequestMapping("/save")
     @ApiOperation(value = "保存", notes = "保存", httpMethod = "POST")
-    public void save(@RequestBody MovieEntity movie){
-
-//        return R.ok();
+    public MessageResponse save(@Valid MoviePageListResVo movie){
+        movieService.add(movie);
+        return MessageResponse.data();
     }
 
     /**

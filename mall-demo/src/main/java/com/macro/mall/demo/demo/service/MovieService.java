@@ -22,6 +22,10 @@ public interface MovieService extends IService<MovieEntity> {
      */
     List<MoviePageListResVo> list();
 
-    void add();
+    /**
+     * 新增
+      * @param movie
+     */
+    void add(MoviePageListResVo movie);
 }
 

@@ -20,14 +20,23 @@ public class MovieServiceImpl extends ServiceImpl<MovieDao, MovieEntity> impleme
     @Autowired
     private MovieDao movieDao;
 
+    /**
+     * 列表
+     * @return
+     */
     @Override
     public List<MoviePageListResVo> list() {
         List<MoviePageListResVo> vo = movieDao.selectMovieList("123");
         return vo;
     }
 
+    /**
+     * 新增
+     * @param movie
+     */
     @Override
-    public void add() {
+    public void add(MoviePageListResVo movie) {
 
     }
+
 }
