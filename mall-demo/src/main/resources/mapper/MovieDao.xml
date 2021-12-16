@@ -14,8 +14,13 @@
     </resultMap>
 
 
-    <select id="selectMovieList" resultType="com.macro.mall.demo.demo.bo.MoviePageListResVo">
+    <select id="selectMovieList" resultType="com.macro.mall.demo.demo.bo.MoviePageListResVo"
+        parameterType="com.macro.mall.demo.demo.bo.req.MoviePageListReqVo">
         select id,title,cover,rate,casts,directors from movie
+        where 1=1
+        <if test="vo.keyword != null and vo.keyword != ''">
+            and like title concat('%',#{vo.keyword},'%')
+        </if>
     </select>
 
 </mapper>

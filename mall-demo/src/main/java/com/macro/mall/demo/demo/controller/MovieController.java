@@ -1,6 +1,9 @@
 package com.macro.mall.demo.demo.controller;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.macro.mall.demo.demo.bo.MoviePageListResVo;
+import com.macro.mall.demo.demo.bo.common.PageView;
+import com.macro.mall.demo.demo.bo.req.MoviePageListReqVo;
 import com.macro.mall.demo.demo.common.MessageResponse;
 import com.macro.mall.demo.demo.config.PermissionLimit;
 import com.macro.mall.demo.demo.model.MovieEntity;
@@ -36,9 +39,9 @@ public class MovieController {
      */
     @RequestMapping("/list")
     @ApiOperation(value = "列表", notes = "列表", httpMethod = "POST")
-    public List<MoviePageListResVo> list(){
-        List<MoviePageListResVo> list = movieService.list();
-        return list;
+    public MessageResponse<PageView<MoviePageListResVo>> list(MoviePageListReqVo vo){
+        PageView<MoviePageListResVo> list = movieService.list(vo);
+        return MessageResponse.data(list);
     }
 
 

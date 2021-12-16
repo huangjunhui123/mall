@@ -1,7 +1,10 @@
 package com.macro.mall.demo.demo.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.macro.mall.demo.demo.bo.MoviePageListResVo;
+import com.macro.mall.demo.demo.bo.common.PageView;
+import com.macro.mall.demo.demo.bo.req.MoviePageListReqVo;
 import com.macro.mall.demo.demo.dao.MovieDao;
 import com.macro.mall.demo.demo.model.MovieEntity;
 import com.macro.mall.demo.demo.service.MovieService;
@@ -28,9 +31,11 @@ public class MovieServiceImpl extends ServiceImpl<MovieDao, MovieEntity> impleme
      * @return
      */
     @Override
-    public List<MoviePageListResVo> list() {
-        List<MoviePageListResVo> vo = movieDao.selectMovieList("123");
-        return vo;
+    public PageView<MoviePageListResVo> list(MoviePageListReqVo vo) {
+        Page page = vo.findPage();
+        List<MoviePageListResVo> list = movieDao.selectMovieList(page,vo);
+        page.setRecords(list);
+        return new PageView<>(page);
     }
 
     /**

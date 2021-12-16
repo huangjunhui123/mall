@@ -2,6 +2,8 @@ package com.macro.mall.demo.demo.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.macro.mall.demo.demo.bo.MoviePageListResVo;
+import com.macro.mall.demo.demo.bo.common.PageView;
+import com.macro.mall.demo.demo.bo.req.MoviePageListReqVo;
 import com.macro.mall.demo.demo.model.MovieEntity;
 
 import java.util.List;
@@ -18,9 +20,10 @@ public interface MovieService extends IService<MovieEntity> {
 
     /**
      * 列表
+     * @param vo
      * @return
      */
-    List<MoviePageListResVo> list();
+    PageView<MoviePageListResVo> list(MoviePageListReqVo vo);
 
     /**
      * 新增
