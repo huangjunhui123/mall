@@ -2,6 +2,7 @@ package com.macro.mall.demo.demo.controller;
 
 import com.macro.mall.demo.demo.bo.MoviePageListResVo;
 import com.macro.mall.demo.demo.common.MessageResponse;
+import com.macro.mall.demo.demo.config.PermissionLimit;
 import com.macro.mall.demo.demo.model.MovieEntity;
 import com.macro.mall.demo.demo.service.MovieService;
 import io.swagger.annotations.Api;
@@ -54,6 +55,7 @@ public class MovieController {
     /**
      * 保存
      */
+    @PermissionLimit(limit = false)
     @RequestMapping("/save")
     @ApiOperation(value = "保存", notes = "保存", httpMethod = "POST")
     public MessageResponse save(@Valid MoviePageListResVo movie){
