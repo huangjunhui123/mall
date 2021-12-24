@@ -2,6 +2,8 @@ package com.macro.mall.demo.demo.bo.req;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -33,5 +35,6 @@ public class MutilFileInfo implements Serializable {
     @Min(value = 1, message = "不能小于1")
     @Max(value = 10000, message = "不能大于10000")
     @ApiModelProperty(value = "分片总数")
+//    @Cacheable(value = "1", key = "12")
     private Integer chunks;
 }
