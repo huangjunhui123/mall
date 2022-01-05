@@ -15,6 +15,7 @@ public class RemoveAllTest {
     public static void main(String[] args) {
         Map<String, String> map = new HashMap<>();
         Map<String, String> mapIds = new HashMap<>();
+        List<String> advIdsOne = new ArrayList<>();
         List<String> list = new ArrayList<>();
         list.add("100");
         list.add("101");
@@ -57,12 +58,16 @@ public class RemoveAllTest {
             System.out.println();
             System.out.println();
 
+            // 根据不同接收平台同步线索
+
+
             // 获取需要更新的接收数据
             plat.add(obj);
             String str = StringUtils.join(plat,",");
             System.out.println("拼接后的字符串为：" + str);
             mapIds.put(key,str);
             System.out.println("最终结果为：" + mapIds);
+            advIdsOne.add(key);// 获取需要更新的线索id
         });
 
 
