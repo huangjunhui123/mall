@@ -13,7 +13,7 @@ import java.util.List;
 public class DateTest {
 
     public static void main(String[] args) {
-        String date = "01:10:09";
+        String date = "04:48:11";
         System.out.println(date(date));
     }
 
