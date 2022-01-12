@@ -13,13 +13,14 @@ import java.util.List;
 public class DateTest {
 
     public static void main(String[] args) {
-        String date = "04:48:11";
+        String date = "00:02:12";
         System.out.println(date(date));
     }
 
     public static String date(String date){
         StringBuilder dateOne = new StringBuilder();
         StringBuilder dateTow = new StringBuilder();
+        StringBuilder dateThree = new StringBuilder();
 
         String[] arr = date.split(":");
         dateOne.append(arr[0]).append(":").append(arr[1]).append("'").append(arr[2]).append("\"");
@@ -33,7 +34,8 @@ public class DateTest {
             list.add(sbs);
         }
         dateTow.append(list.get(0)).append(":").append(list.get(1)).append("'").append(list.get(2)).append("\"");
-        return dateTow.toString();
+        dateThree.append(list.get(0)).append("时").append(list.get(1)).append("分").append(list.get(2)).append("秒");
+        return dateThree.toString();
     }
 
 }
